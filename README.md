@@ -53,7 +53,6 @@ TP1/
 ```
 
 Les commandes ci-dessous s'exécutent depuis `source/` (`cd source` depuis la racine).
-Les dossiers de compilation `target/` et les fichiers locaux des IDE sont ignorés par Git.
 
 ## Affichage de la partie A
 
@@ -180,8 +179,3 @@ java -jar target/hai913i-tp1-analyzer.jar resources/robustness/syntax-error --ac
 java -jar target/hai913i-tp1-analyzer.jar resources/robustness/missing-dep --action calls
 java -jar target/hai913i-tp1-analyzer.jar resources/validation --threshold abc
 ```
-
-Si Maven signale l'absence de compilateur, sélectionner un JDK avec `JAVA_HOME`
-et vérifier `mvn -version`. Entourer de guillemets les chemins contenant des
-espaces. Les bibliothèques externes absentes du projet analysé restent signalées
-par des diagnostics et des bindings non résolus.
