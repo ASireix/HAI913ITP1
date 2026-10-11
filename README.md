@@ -48,8 +48,6 @@ TP1/
 │   └── resources/
 │       ├── validation/      projet de validation
 │       └── robustness/      projets avec erreurs ou dépendances absentes
-├── rapport/                  fichiers du rapport (local, ignoré par Git)
-└── misc/                     cours et exemples fournis (ignoré par Git)
 ```
 
 Les commandes ci-dessous s'exécutent depuis `source/` (`cd source` depuis la racine).
