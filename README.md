@@ -1,12 +1,6 @@
-# HAI913I — TP1 Analyse statique — squelette de départ
+# HAI913I — TP1 Analyse statique
 
-Squelette Maven **facultatif** pour démarrer le TP1. Il ne contient **aucune** partie évaluée :
-ni extraction de structure, ni appels, ni métriques, ni graphe d'appel. Il fournit seulement un
-environnement qui compile, une configuration `ASTParser` qui résout les bindings, et un test de
-fumée correspondant au **point de contrôle A0**.
-
-Vous pouvez aussi partir de zéro : dans ce cas, reprenez au minimum les réglages de
-`JdtParser` et vérifiez-les avec le projet de validation.
+Analyseur statique Java du TP1 HAI913I. Le dossier `source/` contient le projet Maven, les tests et les projets de validation nécessaires pour reproduire les points de contrôle.
 
 ## Versions testées
 
@@ -19,12 +13,12 @@ Vous pouvez aussi partir de zéro : dans ce cas, reprenez au minimum les réglag
 
 ## Commandes
 
-A lancer depuis le dossier starter.
+À lancer depuis le dossier `source`.
 
 ```text
-mvn clean test          # compile et lance le test de fumée (A0)
+mvn clean test          # compile et lance les tests du projet
 mvn clean package       # produit target/hai913i-tp1-analyzer.jar
-java -jar target/hai913i-tp1-analyzer.jar ../resources/validation
+java -jar target/hai913i-tp1-analyzer.jar resources/validation
 ```
 
 Sous Windows, entourez de guillemets les chemins qui contiennent des espaces :
@@ -54,16 +48,15 @@ src/test/resources/sample/                            mini-projet de deux fichie
 Ajoutez vos propres paquetages (par exemple `model`, `extraction`, `metrics`, `callgraph`,
 `report`) : l'organisation est libre, mais elle doit rester lisible et justifiée dans le compte rendu.
 
-Ce `README.md` décrit le squelette ; le README demandé dans le livrable est **le vôtre** et doit
-décrire votre analyseur (voir le sujet, section « Livrables »).
+Ce README Markdown documente l’analyseur, sa construction, ses options et ses résultats vérifiés.
 
 ## Affichage de la partie A
 
-Depuis `starter`, avec un JDK 17 ou plus :
+Depuis `source`, avec un JDK 17 ou plus :
 
 ```bash
 mvn package
-java -jar target/hai913i-tp1-analyzer.jar ../validation lite
+java -jar target/hai913i-tp1-analyzer.jar resources/validation lite
 ```
 
 Le programme affiche A0 (fichiers et erreurs), A1 (AST de Dvd et Category),
@@ -76,8 +69,7 @@ JDT. Ses méthodes `displaySummary`, `displayStructure`, `displayCalls` et
 `displayTotals` peuvent être appelées séparément. L'affichage des cibles conserve
 la forme `Type#methode()` ; les identifiants complets sont stockés séparément dans le modèle pour B3.
 
-Les tests de la partie A utilisent aussi les dossiers voisins `validation` et
-`robustness` : conserver l'organisation du TP pour les exécuter.
+Les projets de validation et de robustesse sont placés dans `source/resources/` et utilisés par les tests Maven.
 
 ## Modèle B1
 
@@ -103,7 +95,7 @@ consomment ce modèle uniquement.
 Les treize métriques sont affichées après la partie A. Le seuil X vaut 5 par défaut :
 
 ```bash
-java -jar target/hai913i-tp1-analyzer.jar ../validation lite --threshold 4
+java -jar target/hai913i-tp1-analyzer.jar resources/validation lite --threshold 4
 ```
 
 `MetricsService` calcule exclusivement sur `ProjectFacts`, renvoie un
@@ -117,11 +109,11 @@ Un modèle vide donne des moyennes à zéro et des classements vides.
 
 Le graphe texte liste toutes les méthodes (y compris isolées), les arcs pondérés
 et les totaux. Les constructeurs sont des nœuds ; leurs appels ne sont pas ajoutés.
-Exemples de recherches, depuis `starter` :
+Exemples de recherches, depuis `source` :
 
 ```bash
-java -jar target/hai913i-tp1-analyzer.jar ../validation lite --callers 'library.model.Loanable#checkOut(library.model.Member)'
-java -jar target/hai913i-tp1-analyzer.jar ../validation lite --callees 'library.service.Catalog#add(library.model.Item,library.model.Item)'
+java -jar target/hai913i-tp1-analyzer.jar resources/validation lite --callers 'library.model.Loanable#checkOut(library.model.Member)'
+java -jar target/hai913i-tp1-analyzer.jar resources/validation lite --callees 'library.service.Catalog#add(library.model.Item,library.model.Item)'
 ```
 
 Les deux options peuvent être combinées. Une méthode inconnue produit un message
@@ -138,12 +130,12 @@ de `add`, la récursion, les recherches inverses, le graphe vide et `missing-dep
 
 ```bash
 java -jar target/hai913i-tp1-analyzer.jar --help
-java -jar target/hai913i-tp1-analyzer.jar ../validation --action structure
-java -jar target/hai913i-tp1-analyzer.jar ../validation --action calls
-java -jar target/hai913i-tp1-analyzer.jar ../validation --action metrics --threshold 5
-java -jar target/hai913i-tp1-analyzer.jar ../validation --action graph --callers 'library.model.Loanable#checkOut(library.model.Member)'
-java -jar target/hai913i-tp1-analyzer.jar ../validation --action ast --lite
-java -jar target/hai913i-tp1-analyzer.jar ../validation --action all lite
+java -jar target/hai913i-tp1-analyzer.jar resources/validation --action structure
+java -jar target/hai913i-tp1-analyzer.jar resources/validation --action calls
+java -jar target/hai913i-tp1-analyzer.jar resources/validation --action metrics --threshold 5
+java -jar target/hai913i-tp1-analyzer.jar resources/validation --action graph --callers 'library.model.Loanable#checkOut(library.model.Member)'
+java -jar target/hai913i-tp1-analyzer.jar resources/validation --action ast --lite
+java -jar target/hai913i-tp1-analyzer.jar resources/validation --action all lite
 ```
 
 `all` est l'action par défaut. `summary` affiche seulement le bilan A0, présent
@@ -160,14 +152,13 @@ les appels non résolus.
 
 ### Construction depuis une copie propre
 
-Conserver les dossiers voisins `starter`, `validation` et `robustness`, utilisés
-par les tests. Depuis `starter` :
+Les fixtures de validation sont dans `source/resources/`. Depuis `source` :
 
 ```bash
 java -version
 mvn -version
 mvn clean package
-java -jar target/hai913i-tp1-analyzer.jar "../validation" --action all lite
+java -jar target/hai913i-tp1-analyzer.jar "resources/validation" --action all lite
 ```
 
 Environnement vérifié : Arch Linux x86_64, OpenJDK 21.0.12.1, Maven 3.9.16,
@@ -179,10 +170,10 @@ locales disponibles), dans une copie sans `target/` sous un chemin avec espaces.
 Pour vérifier les erreurs :
 
 ```bash
-java -jar target/hai913i-tp1-analyzer.jar ../robustness/no-java-files
-java -jar target/hai913i-tp1-analyzer.jar ../robustness/syntax-error --action structure
-java -jar target/hai913i-tp1-analyzer.jar ../robustness/missing-dep --action calls
-java -jar target/hai913i-tp1-analyzer.jar ../validation --threshold abc
+java -jar target/hai913i-tp1-analyzer.jar resources/robustness/no-java-files
+java -jar target/hai913i-tp1-analyzer.jar resources/robustness/syntax-error --action structure
+java -jar target/hai913i-tp1-analyzer.jar resources/robustness/missing-dep --action calls
+java -jar target/hai913i-tp1-analyzer.jar resources/validation --threshold abc
 ```
 
 Si Maven signale l'absence de compilateur, sélectionner un JDK avec `JAVA_HOME`

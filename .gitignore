@@ -53,3 +53,7 @@ __MACOSX/
 
 # Images intermédiaires de graphes
 *.dot.png
+
+# Dossiers locaux non remis dans le dépôt
+/misc/
+/rapport/
