@@ -1,0 +1,55 @@
+# Compilation Java / Maven (tous les sous-projets)
+target/
+bin/
+out/
+*.class
+*.jar
+*.war
+*.ear
+dependency-reduced-pom.xml
+
+# Configuration locale des IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# Fichiers auxiliaires LaTeX ; conserver les sources .tex et les PDF du rendu
+*.aux
+*.log
+*.toc
+*.lof
+*.lot
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.nav
+*.snm
+*.vrb
+*.xdv
+*.dvi
+*.fnt
+
+# Fichiers temporaires et métadonnées système
+*.tmp
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+__MACOSX/
+
+# Configuration locale de l'assistant
+.codex/
+.agents/
+
+# Images intermédiaires de graphes
+*.dot.png
