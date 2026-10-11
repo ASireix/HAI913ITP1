@@ -13,7 +13,7 @@ public record CliOptions(Path project, String action, boolean lite, int threshol
               --callees ID     appelées de la méthode (action graph ou all)
               lite | --lite    AST simplifié
               --help          afficher cette aide
-            Exemple : java -jar target/hai913i-tp1-analyzer.jar ../validation --action metrics --threshold 5
+            Exemple : java -jar target/hai913i-tp1-analyzer.jar resources/validation --action metrics --threshold 5
             Entourer les chemins avec espaces et les identifiants de méthodes de guillemets.
             """;
 

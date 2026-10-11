@@ -38,17 +38,22 @@ Erreurs de compilation : 0
 ## Organisation
 
 ```text
-src/main/java/hai913i/tp1/Main.java               point d'entrée (lit les arguments, délègue)
-src/main/java/hai913i/tp1/parse/ProjectSources.java   racine des sources et fichiers .java
-src/main/java/hai913i/tp1/parse/JdtParser.java        configuration d'ASTParser (bindings)
-src/test/java/hai913i/tp1/ParserSmokeTest.java        point de contrôle A0
-src/test/resources/sample/                            mini-projet de deux fichiers
+TP1/
+├── README.md                 documentation du rendu en Markdown
+├── liens.txt                 lien du dépôt
+├── source/
+│   ├── pom.xml               projet Maven
+│   ├── src/main/java/        analyseur
+│   ├── src/test/             tests automatisés et exemple minimal
+│   └── resources/
+│       ├── validation/      projet de validation
+│       └── robustness/      projets avec erreurs ou dépendances absentes
+├── rapport/                  fichiers du rapport (local, ignoré par Git)
+└── misc/                     cours et exemples fournis (ignoré par Git)
 ```
 
-Ajoutez vos propres paquetages (par exemple `model`, `extraction`, `metrics`, `callgraph`,
-`report`) : l'organisation est libre, mais elle doit rester lisible et justifiée dans le compte rendu.
-
-Ce README Markdown documente l’analyseur, sa construction, ses options et ses résultats vérifiés.
+Les commandes ci-dessous s'exécutent depuis `source/` (`cd source` depuis la racine).
+Les dossiers de compilation `target/` et les fichiers locaux des IDE sont ignorés par Git.
 
 ## Affichage de la partie A
 
